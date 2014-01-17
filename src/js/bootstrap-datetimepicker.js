@@ -43,8 +43,8 @@
 
 (function ($, moment) {
     if (typeof moment === 'undefined') {
-        alert("momentjs is requried");
-        throw new Error('momentjs is requried');
+        alert("momentjs is required");
+        throw new Error('momentjs is required');
     };
 
     var dpgId = 0,
@@ -62,7 +62,7 @@
             startDate: new pMoment({ y: 1970 }),
             endDate: new pMoment().add(50, "y"),
             collapse: true,
-            language: "en",
+            language: pMoment.lang(),
             defaultDate: "",
             disabledDates: [],
             enabledDates: false,
@@ -641,7 +641,7 @@
 	        if (!picker.date) picker.date = pMoment({ y: 1970 });
 	        set();
 	        fillTime();
-	        notifyChange(oldDate, e.type);
+	        notifyChange(oldDate);
 	        return rv;
 	    },
 
@@ -656,13 +656,13 @@
             if (d.isValid()) {
                 update();
                 picker.setValue(d);
-                notifyChange(oldDate, e.type);
+                notifyChange(oldDate);
                 set();
             }
             else {
                 picker.viewDate = oldDate;
                 //picker.setValue(""); // unset the date when the input is erased
-                notifyChange(oldDate, e.type);
+                notifyChange(oldDate);
                 notifyError(d);
                 picker.unset = true;
                 input.val('');
